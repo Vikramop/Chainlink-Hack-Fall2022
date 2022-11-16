@@ -1,15 +1,23 @@
 require('@nomicfoundation/hardhat-toolbox');
 require('dotenv').config({ path: '.env' });
 
-const POLYGON_API_URL = process.env.ALCHEMY_API_URL;
+const QUICKNODE_HTTP_URL = process.env.QUICKNODE_HTTP_URL;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const GOERLI_URL = process.env.GOERLI_URL;
 
 module.exports = {
   solidity: '0.8.9',
   networks: {
     mumbai: {
-      url: POLYGON_API_URL,
+      url: QUICKNODE_HTTP_URL,
       accounts: [PRIVATE_KEY],
     },
+    goerli: {
+      url: GOERLI_URL,
+      accounts: [PRIVATE_KEY],
+    },
+  },
+  etherscan: {
+    apiKey: process.env.API_KEY,
   },
 };

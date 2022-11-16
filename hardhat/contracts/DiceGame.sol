@@ -1,9 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.9;
 
-import "https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/VRFV2WrapperConsumerBase.sol";
+// goerli: "0xe36350eCC46968413a697A90c839F0C9022b9fDf"
+// polygon : "0x96edf14974415F9191Ca9669c60f61E42a7C2DE0"
 
-contract DiceRoll is VRFV2WrapperConsumerBase {
+import "@chainlink/contracts/src/v0.8/VRFV2WrapperConsumerBase.sol";
+
+contract dicegame is VRFV2WrapperConsumerBase {
     event DiceRollRequest(uint256 requestId);
     event DiceRollResult(uint256 requestId, bool didwin);
 
@@ -23,10 +26,11 @@ contract DiceRoll is VRFV2WrapperConsumerBase {
 
     mapping(uint256 => DiceRollStatus) public statuses;
 
-    address linkAddress = "0x326C977E6efc84E512bB9C30f76E30c160eD06FB";
-    address vrfWrapperAddress = "0x708701a1DfF4f478de54383E49a627eD4852C816";
+    address constant linkAddress = 0x326C977E6efc84E512bB9C30f76E30c160eD06FB;
+    address constant vrfWrapperAddress =
+        0x99aFAf084eBA697E584501b8Ed2c0B37Dd136693;
 
-    uint256 constant entryFees = 0.01 ether;
+    uint256 constant entryFees = 0.05 ether;
     uint32 constant callbackGasLimit = 1_000_000;
     uint32 constant numWords = 1;
     uint16 constant requestConfirmations = 3;
